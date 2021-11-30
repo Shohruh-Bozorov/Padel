@@ -22,6 +22,13 @@ namespace Padel
         // Adding logic so both players can get points
         public void Point(Player player)
         {
+            if (_player1.Score._Score == 3 && _player2.Score._Score == 3)
+            {
+                _player1.Score._Score--;
+                _player2.Score._Score--;
+
+            }
+
             if (player.Name == _player1.Name)
             {
                 _player1.Point();
@@ -48,13 +55,16 @@ namespace Padel
 
 
         // logic wrong
+        // added else if so that the method doesn't always return player 2 wins.
         public string ScoreString()
         {
             if (_player1.Score._Score > 4)
             {
                 return "Player 1 wins";
             }
-            return "Player 2 wins";
+            else if (_player2.Score._Score > 4)
+                return "Player 2 wins";
+            else return null;
         }
     }
 }
