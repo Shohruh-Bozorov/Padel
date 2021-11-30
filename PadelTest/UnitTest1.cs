@@ -65,9 +65,10 @@ namespace PadelTest
 
             Assert.Equal(name, player.Name);
         }
-
+        
+        // test incressing score to player
         [Fact]
-        public void Test_IsScoreWorking()
+        public void Test_IsPointWorking()
         {
             var vidar = new Player("Vidar");
             var kamran = new Player("Kamran");
