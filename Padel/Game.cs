@@ -3,19 +3,25 @@
 namespace Padel
 {
     // doesn't include player2
+    // Player 2 doesn't seem to be needed
     public class Game
     {
         private Player _player1;
+        public Player Player1 { get { return _player1; } }
         private Player _player2;
+        public Player Player2 { get { return _player2; } }
 
+
+        // Adjusting constructor logic to set both players
         public Game(Player player1, Player player2)
         {
             _player1 = player1;
-            _player1 = player2;
+            _player2 = player2;
         }
 
         public void Point(Player player)
         {
+            
             _player1.Point();
         }
 
