@@ -72,11 +72,10 @@ namespace PadelTest
             var vidar = new Player("Vidar");
             var kamran = new Player("Kamran");
             var game = new Game(vidar, kamran);
-            game.Point(kamran);
+            game.Point(vidar);
+            //game.Point(kamran);
 
-            Assert.Equal(1, game.Player2.Score._Score);
-
-
+            Assert.Equal(1, game.Player1.Score._Score);
 
 
         }
