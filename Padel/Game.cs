@@ -34,9 +34,16 @@ namespace Padel
 
 
         // doesn't return player2
-        public Score Score()
+        // added parameter to determine player
+        //
+        public Score Score(Player player)
         {
-            return _player1.Score;
+            if (_player1.Name == player.Name)
+                return _player1.Score;
+            else if (_player2.Name == player.Name)
+                return _player2.Score;
+
+            else throw new FormatException("Incorrect player");
         }
 
 
