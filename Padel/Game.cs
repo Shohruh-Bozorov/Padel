@@ -2,7 +2,7 @@
 
 namespace Padel
 {
-
+    // doesn't include player2
     public class Game
     {
         private Player _player1;
@@ -19,11 +19,14 @@ namespace Padel
             _player1.Point();
         }
 
+        // doesn't return player2
         public Score Score()
         {
             return _player1.Score;
         }
 
+
+        // logic wrong
         public string ScoreString()
         {
             if (_player1.Score._Score > 4)
