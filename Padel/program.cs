@@ -5,8 +5,8 @@ namespace Padel
     {
         public program()
         {
-            var game = new Game(new Player("Vidar"), new Player("Kamran"));
-            game.Score();
+            /*var game = new Game(new Player("Vidar"), new Player("Kamran"));
+            game.Score();*/
 
         }
     }
