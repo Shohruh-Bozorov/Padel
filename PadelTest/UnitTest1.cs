@@ -185,7 +185,56 @@ namespace PadelTest
             Assert.NotEqual(expectedForPlayer2, f);
         }
 
+        // Testing so player starts with correct score
+        // Vidar
+
+        [Fact]
+        public void Test_NewPlayer_Score()
+        {
+            var player = new Player("John");
+
+            Assert.True(player.Score._Score == 0);
+        }
+
+        //Testing game constructor
+        // Vidar
+
+        [Theory]
+        [InlineData("John", "Beck")]
+        [InlineData("1", "2")]
+        public void Test_GameConstructor(string name1, string name2)
+        {
+            var game = new Game(new Player(name1), new Player(name2));
+            Assert.True(game.Player1.Name == name1 && game.Player2.Name == name2);
+        }
+
+        // Testing if you need to win with two points
+        // Vidar
+
+        [Fact]
+        public void Test_AddScore_When_Tie()
+        {
+            var player1 = new Player("John");
+            var player2 = new Player("Betty");
+            var game = new Game(player1, player2);
+
+            // Give palyer1 3 points
+            game.Point(player1);
+            game.Point(player1);
+            game.Point(player1);
+
+            // Give player2 3 points
+            game.Point(player2);
+            game.Point(player2);
+            game.Point(player2);
+
+            // Give player1 extra point but should still be 3 because you need to win with 2 points
+            // player2 should have 2 points
+            game.Point(player1);
 
 
-    }
+            Assert.True(player1.Score._Score == 3 && player2.Score._Score == 2);
+        }
+
+}
 }
