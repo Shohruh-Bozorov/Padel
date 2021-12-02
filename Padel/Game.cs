@@ -37,6 +37,13 @@ namespace Padel
             {
                 _player2.Point();
             }
+
+            //error hantering ifall namnet inte matchar varken player1 eller player2 name
+            else
+            {
+                Console.WriteLine("Invalid name, try again!");
+            }
+
         }
 
 
