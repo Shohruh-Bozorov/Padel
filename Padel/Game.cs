@@ -29,7 +29,12 @@ namespace Padel
                 _player2.Score._Score--;
 
             }
-
+            if (_player1.Score._Score == 5 || _player2.Score._Score == 5)
+            {
+                _player1.Score._Score = 0;
+                _player2.Score._Score = 0;
+            }
+                
             if (player.Name == _player1.Name)
             {
                 _player1.Point();
