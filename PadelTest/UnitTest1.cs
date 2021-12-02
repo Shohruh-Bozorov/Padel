@@ -222,8 +222,10 @@ namespace PadelTest
             game.Point(player1);
             game.Point(player1);
             game.Point(player1);
+            game.Point(player1);
 
             // Give player2 3 points
+            game.Point(player2);
             game.Point(player2);
             game.Point(player2);
             game.Point(player2);
@@ -233,7 +235,7 @@ namespace PadelTest
             game.Point(player1);
 
 
-            Assert.True(player1.Score._Score == 3 && player2.Score._Score == 2);
+            Assert.True(player1.Score._Score == 4 && player2.Score._Score == 3);
         }
 
 }
