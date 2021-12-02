@@ -30,6 +30,10 @@ namespace PadelTest
         /// <summary>
         /// Testing Score file
         /// </summary>
+      
+        
+        // TESTING SCORE Class
+        
         [Fact]
         public void Test_ScoreAddition()
         {
@@ -62,11 +66,35 @@ namespace PadelTest
         {
             var player = new Player("q");
             string name = "Vidar";
+            //string name = "q";
 
             Assert.Equal(name, player.Name);
         }
 
+        // Testing Players score when new palyer is made
+        // Vidar
+
+        [Fact]
+        public void Test_NewPlayer_Score()
+        {
+            var player = new Player("John");
+
+            Assert.True(player.Score._Score == 0);
+        }
+
         // TESTING GAME Class
+
+        // test that game constructor creates two players with names
+        // Vidar
+      
+        [Theory]
+        [InlineData("John", "Beck")]
+        [InlineData("1", "2")]
+        public void Test_GameConstructor1(string name1, string name2)
+        {
+            var game = new Game(new Player(name1), new Player(name2));
+            Assert.True(game.Player1.Name == name1 && game.Player2.Name == name2);
+        }
 
         // test incressing score to player
         [Fact]
@@ -115,7 +143,7 @@ namespace PadelTest
         // Vidar
         [Fact]
          public void Test_ScoreExetion()
-        {
+         {
             var player1 = new Player("John");
             var player2 = new Player("Betty");
             var player3 = new Player("James");
@@ -123,7 +151,39 @@ namespace PadelTest
 
 
             Assert.Throws<FormatException>(() => game.Score(player3));
+         }
+
+        // Testing if you can win with only one point
+        // Vidar
+
+        [Fact]
+        public void Test_AddScore_When_Tie()
+        {
+            var player1 = new Player("John");
+            var player2 = new Player("Betty");
+            var game = new Game(player1, player2);
+
+            // Give palyer1 3 points
+            game.Point(player1);
+            game.Point(player1);
+            game.Point(player1);
+
+            // Give player2 3 points
+            game.Point(player2);
+            game.Point(player2);
+            game.Point(player2);
+
+            // Give player1 extra point but should still be 3 because you need to win with 2 points
+            // player2 should have 2 points
+            game.Point(player1);
+            
+
+            Assert.True(player1.Score._Score == 3 && player2.Score._Score == 2);
         }
+
+        // TESING SET Class
+
+
 
     }
 }
