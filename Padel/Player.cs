@@ -10,6 +10,8 @@ namespace Padel
         public Player(string name)
         {
             Name = name;
+            // borde man inte skapa instansen här på constructorn? för då skapas det ju en instans för båda spelarna. 
+            Score = new Score();
         }
         
         

@@ -30,10 +30,6 @@ namespace PadelTest
         /// <summary>
         /// Testing Score file
         /// </summary>
-      
-        
-        // TESTING SCORE Class
-        
         [Fact]
         public void Test_ScoreAddition()
         {
@@ -49,11 +45,11 @@ namespace PadelTest
 
 
         //testing player score
+        // optomised Player class to create score class automatically / Kamran
         [Fact]
         public void Test_PlayerScore()
         {
             var player = new Player("Kamran");
-            player.Score = new Score();
             player.Point();
 
             Assert.Equal(1, player.Score._Score);
@@ -64,41 +60,17 @@ namespace PadelTest
         [Fact]
         public void Test_PlayerName()
         {
-            var player = new Player("q");
+            var player = new Player("Vidar");
             string name = "Vidar";
-            //string name = "q";
 
             Assert.Equal(name, player.Name);
         }
 
-        // Testing Players score when new palyer is made
-        // Vidar
-
-        [Fact]
-        public void Test_NewPlayer_Score()
-        {
-            var player = new Player("John");
-
-            Assert.True(player.Score._Score == 0);
-        }
-
         // TESTING GAME Class
 
-        // test that game constructor creates two players with names
-        // Vidar
-      
-        [Theory]
-        [InlineData("John", "Beck")]
-        [InlineData("1", "2")]
-        public void Test_GameConstructor1(string name1, string name2)
-        {
-            var game = new Game(new Player(name1), new Player(name2));
-            Assert.True(game.Player1.Name == name1 && game.Player2.Name == name2);
-        }
-
-        // test incressing score to player
+        // test incresing score to player
         [Fact]
-        public void Test_IsPointWorking()
+        public void Test_PointIsWorking()
         {
             var vidar = new Player("Vidar");
             var kamran = new Player("Kamran");
@@ -143,7 +115,7 @@ namespace PadelTest
         // Vidar
         [Fact]
          public void Test_ScoreExetion()
-         {
+        {
             var player1 = new Player("John");
             var player2 = new Player("Betty");
             var player3 = new Player("James");
@@ -151,37 +123,67 @@ namespace PadelTest
 
 
             Assert.Throws<FormatException>(() => game.Score(player3));
-         }
-
-        // Testing if you can win with only one point
-        // Vidar
-
-        [Fact]
-        public void Test_AddScore_When_Tie()
-        {
-            var player1 = new Player("John");
-            var player2 = new Player("Betty");
-            var game = new Game(player1, player2);
-
-            // Give palyer1 3 points
-            game.Point(player1);
-            game.Point(player1);
-            game.Point(player1);
-
-            // Give player2 3 points
-            game.Point(player2);
-            game.Point(player2);
-            game.Point(player2);
-
-            // Give player1 extra point but should still be 3 because you need to win with 2 points
-            // player2 should have 2 points
-            game.Point(player1);
-            
-
-            Assert.True(player1.Score._Score == 3 && player2.Score._Score == 2);
         }
 
-        // TESING SET Class
+
+        //testing to see if match point logic works.
+        //logic failed, swapped game point to 4 from 3, works now.
+        // Kamran
+        [Fact]
+        public void Test_GamePointLogic()
+        {
+            var player1 = new Player("Jerry");
+            var player2 = new Player("James");
+            var game = new Game(player1, player2);
+            for (int i = 0; i < 3; i++)
+            {
+                game.Point(player1);
+                game.Point(player2);
+            }
+            game.Point(player1);
+            game.Point(player1);
+
+            int expected = 5;
+
+            Assert.Equal(expected, player1.Score._Score);
+        }
+
+
+        //Testing the display score
+        // Kamran
+        [Fact]
+        public void Test_DisplayScoreWorks()
+        {
+            var player1 = new Player("Jerry");
+            var player2 = new Player("James");
+            var game = new Game(player1, player2);
+
+            //testing for player one
+            for (int i = 0; i < 5; i++)
+            {
+                game.Point(player1);
+            }
+            string s = game.ScoreString();
+            string expected = "Player 1 wins";
+
+            //testing for player2
+            for (int i = 0; i < 5; i++)
+            {
+                game.Point(player2);
+            }
+            string f = game.ScoreString();
+            player1.Score._Score = 0;
+            string k = game.ScoreString();
+            string expectedForPlayer2 = "Player 2 wins";
+
+            Assert.Equal(expected, s);
+
+            // should be equal because score for player 1 is reset.
+            Assert.Equal(expectedForPlayer2, k);
+
+            // should not be equal since player1 score is already 5
+            Assert.NotEqual(expectedForPlayer2, f);
+        }
 
 
 

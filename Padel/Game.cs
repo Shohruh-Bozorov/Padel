@@ -19,10 +19,11 @@ namespace Padel
             _player2 = player2;
         }
 
-        // Adding logic so both players can get points
+        // Adding logic so both players can get points.
+        // Added logic to simulate match point.
         public void Point(Player player)
         {
-            if (_player1.Score._Score == 3 && _player2.Score._Score == 3)
+            if (_player1.Score._Score == 4 && _player2.Score._Score == 4)
             {
                 _player1.Score._Score--;
                 _player2.Score._Score--;
@@ -37,6 +38,13 @@ namespace Padel
             {
                 _player2.Point();
             }
+
+            //error hantering ifall namnet inte matchar varken player1 eller player2 name
+            else
+            {
+                Console.WriteLine("Invalid name, try again!");
+            }
+
         }
 
 
