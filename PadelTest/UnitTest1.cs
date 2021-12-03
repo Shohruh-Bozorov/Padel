@@ -244,15 +244,21 @@ namespace PadelTest
             var player1 = new Player("Betty");
             var player2 = new Player("John");
             var game = new Game(player1, player2);
-            for (int i = 0; i < 5; i++)
-            {
-                game.Point(player1); // 15, 30, 40, 60
-            }
+
+            game.Point(player1);
+            game.Point(player1);
+            game.Point(player1);
+            game.Point(player1);
+            game.Point(player1);
+            var result = game.ScoreString();
+
             var set = new Set();
+            set.Point(game);
 
 
-            // if player1.gamePoints >5
-            set.Point(player1);
+
+
+
         }
 
         //Testing players score reset after wining game

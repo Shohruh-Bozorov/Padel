@@ -6,7 +6,6 @@ namespace Padel
     {
         public string Name { set; get; }
         public Score Score { set; get; } = new Score();
-        public int gamePoints = 0;
         
         public Player(string name)
         {
@@ -19,8 +18,6 @@ namespace Padel
         public void Point()
         {
             Score.Increase();
-            if (Score._Score == 5)
-                gamePoints++;
         }
     }
 }

@@ -7,9 +7,10 @@ namespace Padel
     public class Game
     {
         private Player _player1;
-        public Player Player1 { get { return _player1; } }
         private Player _player2;
+        public Player Player1 { get { return _player1; } }
         public Player Player2 { get { return _player2; } }
+
 
 
         // Adjusting constructor logic to set both players
@@ -29,31 +30,18 @@ namespace Padel
                 _player2.Score._Score--;
 
             }
-            /*if (_player1.Score._Score == 5 || _player2.Score._Score == 5)
-            {
-                _player1.Score._Score = 0;
-                _player2.Score._Score = 0;               
-            }*/
-                
-            if (player.Name == _player1.Name)
-            {
-                _player1.Point();
-            }
-            if (player.Name == _player2.Name)
-            {
-                _player2.Point();
-            }
             if (_player1.Score._Score == 5 || _player2.Score._Score == 5)
             {
                 _player1.Score._Score = 0;
-                _player2.Score._Score = 0;
+                _player2.Score._Score = 0;               
             }
 
-            //error hantering ifall namnet inte matchar varken player1 eller player2 name
+            if (player.Name == _player1.Name)
+                _player1.Point();
+            else if (player.Name == _player2.Name)
+                _player2.Point();
             else
-            {
-                Console.WriteLine("Invalid name, try again!");
-            }
+                throw new FormatException("Invalid player name");
 
         }
 
@@ -82,7 +70,7 @@ namespace Padel
             }
             else if (_player2.Score._Score > 4)
                 return "Player 2 wins";
-            else return null;
+            else return "Undecided";
         }
     }
 }
