@@ -10,6 +10,7 @@ namespace Padel
         public void Point(Player player)
         {
             _games[0].Point(player);
+            //_player1.gamePoints++;
         }
     }
 }

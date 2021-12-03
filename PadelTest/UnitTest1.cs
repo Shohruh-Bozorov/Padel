@@ -255,5 +255,35 @@ namespace PadelTest
             set.Point(player1);
         }
 
-}
+        //Testing players score reset after wining game
+        // Vidar
+
+        [Fact]
+        public void Test_Player_Score_Reset()
+        {
+            var player1 = new Player("John");
+            var player2 = new Player("Betty");
+            var game = new Game(player1, player2);
+            for (int i = 0; i < 5; i++)
+            {
+                game.Point(player1);
+            }
+
+            Assert.True(player1.Score._Score == 0);
+        }
+
+        // Test if added field gamePoints is added correctly in point method in player class.
+        // Vidar
+        [Fact]
+        public void Test_Game_Point_Incresse()
+        {
+            var player = new Player("Alan");
+            for (int i = 0; i < 5; i++)
+            {
+                player.Point();
+            }
+            Assert.True(player.gamePoints == 1);
+        }
+
+    }
 }

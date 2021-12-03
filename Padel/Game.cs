@@ -29,11 +29,11 @@ namespace Padel
                 _player2.Score._Score--;
 
             }
-            if (_player1.Score._Score == 5 || _player2.Score._Score == 5)
+            /*if (_player1.Score._Score == 5 || _player2.Score._Score == 5)
             {
                 _player1.Score._Score = 0;
-                _player2.Score._Score = 0;
-            }
+                _player2.Score._Score = 0;               
+            }*/
                 
             if (player.Name == _player1.Name)
             {
@@ -42,6 +42,11 @@ namespace Padel
             if (player.Name == _player2.Name)
             {
                 _player2.Point();
+            }
+            if (_player1.Score._Score == 5 || _player2.Score._Score == 5)
+            {
+                _player1.Score._Score = 0;
+                _player2.Score._Score = 0;
             }
 
             //error hantering ifall namnet inte matchar varken player1 eller player2 name

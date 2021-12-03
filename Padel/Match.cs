@@ -13,7 +13,7 @@ namespace Padel
             _sets = new List<Set>(numberOfSets);
             for (int i = 0; i < numberOfSets; i++)
             {
-                _sets.Add(new Set());
+ //               _sets.Add(new Set());
             }
             _player1 = player1;
             _player2 = player2;

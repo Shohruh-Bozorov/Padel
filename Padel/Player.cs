@@ -19,7 +19,7 @@ namespace Padel
         public void Point()
         {
             Score.Increase();
-            if (Score._Score > 5)
+            if (Score._Score == 5)
                 gamePoints++;
         }
     }
