@@ -12,6 +12,11 @@ namespace Padel
 
         // changed to take in game instead of player
         // first to 6 games. if it is 5-5 then play to 7. if 6-6 play one last game
+
+
+        // Tested By Vidar
+        // index is not needed in this method because the purpose is just  to add score to one of the players
+        // Did not add GamesWon as expexted
         public void Point(Game game, Player player, int index)
         {
             //loop how many times it should add a point.

@@ -66,6 +66,17 @@ namespace PadelTest
             Assert.Equal(name, player.Name);
         }
 
+        // Testing so player starts with correct score
+        // Vidar
+
+        [Fact]
+        public void Test_NewPlayer_Score()
+        {
+            var player = new Player("John");
+
+            Assert.True(player.Score._Score == 0);
+        }
+
         // TESTING GAME Class
 
         // test incresing score to player
@@ -185,16 +196,7 @@ namespace PadelTest
             Assert.NotEqual(expectedForPlayer2, f);
         }
 
-        // Testing so player starts with correct score
-        // Vidar
-
-        [Fact]
-        public void Test_NewPlayer_Score()
-        {
-            var player = new Player("John");
-
-            Assert.True(player.Score._Score == 0);
-        }
+        
 
         //Testing game constructor
         // Vidar
@@ -246,18 +248,11 @@ namespace PadelTest
 
             Match match1 = new Match(2, player1, player2);
 
-            
-
-
-
-
-
-
         }
 
 
 
-        [Fact]
+        /*[Fact]
         public void Test_New()
         {
 
@@ -274,7 +269,7 @@ namespace PadelTest
             set.Point(game1);
             set.Point(game2);
             set.Point(game2);
-        }
+        }*/
 
         //Testing players score reset after wining game
         // Vidar
@@ -303,8 +298,97 @@ namespace PadelTest
             {
                 player.Point();
             }
-            Assert.True(player.gamePoints == 1);
+            //Assert.True(player.gamePoints == 1);
         }
 
+
+        // TESTING SET Class
+
+
+        // Test creatinng new Set to see if it contains something
+        // Vidar
+
+        [Fact]
+        public void Test_CreatingNewSet()
+        {
+            var newSet = new Set();
+            
+            Assert.Null(newSet);
+            // Contains two players
+        }
+
+        // Test if players in Set contains something
+        // Vidar
+
+        [Fact]
+        public void Test_PlayersContains()
+        {
+            var set = new Set();
+            Assert.Null(set._player1);
+            Assert.Null(set._player2);
+            // Players is null
+        }
+
+        // Test point method if you can add score
+        //Vidar
+
+         [Fact]
+         public void Test_PointMethod_SetClass()
+        {
+            var player1 = new Player("p1");
+            var player2 = new Player("p2");
+            var game = new Game(player1, player2);
+            var set = new Set();
+            set.Point(game, player1, 0);
+            set.Point(game, player1, 0);
+            Assert.Equal(2, player1.Score._Score);
+
+        }
+
+        // Test point method if GamesWon is incressed when wining one Game
+        // Vidar
+
+        [Fact]
+        public void Test_GamesWonIncressed()
+        {
+            var player1 = new Player("p1");
+            var player2 = new Player("p2");
+            var game = new Game(player1, player2);
+            var set = new Set();
+
+            for (int i = 0; i < 4; i++)
+            {
+                set.Point(game, player1, 0);
+            }
+          
+            Assert.Equal(1, player1.GamesWon);
+
+            // Noticed here that the index was not needed
+        }
+
+        // Test adding score to two different games to see if GamesWon was incressed
+
+        [Fact]
+        public void Test_AddingScoreInDifferentGames()
+        {
+            var player1 = new Player("p1");
+            var player2 = new Player("p2");
+            var game = new Game(player1, player2);
+            var game2 = new Game(player1, player2);
+            var set = new Set();
+
+            for (int i = 0; i < 4; i++)
+            {
+                set.Point(game, player1, 0);
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                set.Point(game2, player1, 0);
+            }
+
+            Assert.Equal(2, player1.GamesWon);
+
+            // Failed
+        }
     }
 }
