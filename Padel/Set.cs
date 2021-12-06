@@ -6,12 +6,23 @@ namespace Padel
     public class Set
     {
         List<Game> _games = new List<Game>();
+        public Player _player1;
+        public Player _player2;
 
-        public void Point(Game game)
+
+        // changed to take in game instead of player
+        // first to 6 games. if it is 5-5 then play to 7. if 6-6 play one last game
+        public void Point(Game game, Player player, int index)
         {
-
+            //loop how many times it should add a point.
             _games.Add(game);
+            _games[index].Point(player);
+        }
 
+        public string SetScore()
+        {
+            return $"The score is \n" +
+                $"Player one: {_player1.GamesWon} - {_player2.GamesWon}";
         }
     }
 }

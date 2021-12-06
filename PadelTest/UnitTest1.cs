@@ -241,24 +241,39 @@ namespace PadelTest
         [Fact]
         public void Test_Ett()
         {
-            var player1 = new Player("Betty");
-            var player2 = new Player("John");
-            var game = new Game(player1, player2);
+            Player player1 = new Player("Jimmy");
+            Player player2 = new Player("Frank");
 
-            game.Point(player1);
-            game.Point(player1);
-            game.Point(player1);
-            game.Point(player1);
-            game.Point(player1);
-            var result = game.ScoreString();
+            Match match1 = new Match(2, player1, player2);
 
-            var set = new Set();
-            set.Point(game);
+            
 
 
 
 
 
+
+        }
+
+
+
+        [Fact]
+        public void Test_New()
+        {
+
+            Player player1 = new Player("Karre");
+            Player player2 = new Player("Jimmy");
+            Game game1 = new Game(player1, player2);
+            Game game2 = new Game(player1, player2);
+            Game game3 = new Game(player1, player2);
+            Game game4 = new Game(player1, player2);
+
+
+            Set set = new Set();
+
+            set.Point(game1);
+            set.Point(game2);
+            set.Point(game2);
         }
 
         //Testing players score reset after wining game

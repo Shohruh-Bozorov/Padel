@@ -24,16 +24,11 @@ namespace Padel
         // Added logic to simulate match point.
         public void Point(Player player)
         {
-            if (_player1.Score._Score == 4 && _player2.Score._Score == 4)
+            if (_player1.Score._Score == 3 && _player2.Score._Score == 3)
             {
                 _player1.Score._Score--;
                 _player2.Score._Score--;
 
-            }
-            if (_player1.Score._Score == 5 || _player2.Score._Score == 5)
-            {
-                _player1.Score._Score = 0;
-                _player2.Score._Score = 0;               
             }
 
             if (player.Name == _player1.Name)
@@ -64,12 +59,12 @@ namespace Padel
         // added else if so that the method doesn't always return player 2 wins.
         public string ScoreString()
         {
-            if (_player1.Score._Score > 4)
-            {
+            if (_player1.Score._Score == 4)
                 return "Player 1 wins";
-            }
-            else if (_player2.Score._Score > 4)
+
+            else if (_player2.Score._Score == 4)
                 return "Player 2 wins";
+
             else return "Undecided";
         }
     }

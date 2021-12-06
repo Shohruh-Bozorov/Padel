@@ -13,21 +13,27 @@ namespace Padel
             _sets = new List<Set>(numberOfSets);
             for (int i = 0; i < numberOfSets; i++)
             {
- //               _sets.Add(new Set());
+                _sets.Add(new Set());
             }
             _player1 = player1;
             _player2 = player2;
         }
 
-        public void Point(Player player)
+        public void Point(Set set, int index)
         {
-            _sets[0].Point(player);
+            _sets[index] = set; 
         }
 
         //might be wrong logic
-        public Score MatchScore()
+        public string MatchScore()
         {
-            return new Score();
+            if (_player1.SetsWon == 3)
+                return "Player one has won the match";
+            else if (_player2.SetsWon == 3)
+                return "Player two has won the match";
+
+            return $"The score is \n" +
+                $"Player one: {_player1.SetsWon} - {_player2.SetsWon}";
         }
     }
 }
