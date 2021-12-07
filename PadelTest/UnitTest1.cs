@@ -101,10 +101,10 @@ namespace PadelTest
             var player1 = new Player("John");
             var player2 = new Player("Betty");
             var game = new Game(player1, player2);
-            var score1 = (game.Score(player1));
-            var score2 = (game.Score(player2));
+            int score1 = (game.Score(player1));
+            int score2 = (game.Score(player2));
 
-            Assert.True(score1._Score == score2._Score);
+            Assert.True(score1 == score2);
         }
 
         // test get players score when score is false
@@ -115,11 +115,11 @@ namespace PadelTest
             var player1 = new Player("John");
             var player2 = new Player("Betty");
             var game = new Game(player1, player2);
-            game.Point(player1);
-            var score1 = (game.Score(player1));
-            var score2 = (game.Score(player2));
+            game.Point(player1); // Giving Score to player1
+            int score1 = (game.Score(player1));
+            int score2 = (game.Score(player2));
 
-            Assert.False(score1._Score == score2._Score);
+            Assert.False(score1 == score2);
         }
 
         // test if exeption is thrown in Score method when player does not exist in game
@@ -339,8 +339,8 @@ namespace PadelTest
             var player2 = new Player("p2");
             var game = new Game(player1, player2);
             var set = new Set();
-            set.Point(game, player1, 0);
-            set.Point(game, player1, 0);
+            set.Point(game, player1);
+            set.Point(game, player1);
             Assert.Equal(2, player1.Score._Score);
 
         }
@@ -358,7 +358,7 @@ namespace PadelTest
 
             for (int i = 0; i < 4; i++)
             {
-                set.Point(game, player1, 0);
+                set.Point(game, player1);
             }
 
             Assert.Equal(1, player1.GamesWon);
@@ -367,6 +367,7 @@ namespace PadelTest
         }
 
         // Test adding score to two different games to see if GamesWon was incressed
+        // Vidar
 
         [Fact]
         public void Test_AddingScoreInDifferentGames()
@@ -379,11 +380,11 @@ namespace PadelTest
 
             for (int i = 0; i < 4; i++)
             {
-                set.Point(game, player1, 0);
+                set.Point(game, player1);
             }
             for (int i = 0; i < 4; i++)
             {
-                set.Point(game2, player1, 0);
+                set.Point(game2, player1);
             }
 
             Assert.Equal(2, player1.GamesWon);
@@ -404,7 +405,7 @@ namespace PadelTest
 
             for (int i = 0; i < 4; i++)
             {
-                set.Point(game, player1, 0);
+                set.Point(game, player1);
             }
             Assert.NotNull(set.SetScore());
 
