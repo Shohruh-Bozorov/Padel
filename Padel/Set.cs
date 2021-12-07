@@ -17,11 +17,11 @@ namespace Padel
         // Tested By Vidar
         // index is not needed in this method because the purpose is just  to add score to one of the players
         // Did not add GamesWon as expexted
-        public void Point(Game game, Player player, int index)
+        public void Point(Game game, Player player)
         {
             //loop how many times it should add a point.
             _games.Add(game);
-            _games[index].Point(player);
+            game.Point(player);
         }
 
         public string SetScore()
