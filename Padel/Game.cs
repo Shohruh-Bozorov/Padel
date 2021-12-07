@@ -6,6 +6,7 @@ namespace Padel
     // Player 2 doesn't seem to be needed
     public class Game
     {
+        //bool isWon = false;
         private Player _player1;
         private Player _player2;
         public Player Player1 { get { return _player1; } }
@@ -33,6 +34,16 @@ namespace Padel
 
             player.Point();
 
+            // need to add a score reset when a game is won
+            // otherwise player variables won't display correctly.
+
+
+            if (_player1.Score._Score == 4 || _player2.Score._Score == 4)
+            {
+                _player1.Score._Score = 0;
+                _player2.Score._Score = 0;
+
+            }
         }
 
 
@@ -47,9 +58,14 @@ namespace Padel
 
         // logic wrong
         // added else if so that the method doesn't always return player 2 wins.
+        // logic flawed with the current score system. 
         // Kamran
         public string ScoreString()
         {
+            // The logic here should be changed to some other kind of system.
+            // Could work with something like a bool to become true as soon as a player wins 4 games in an instace of game.
+            // Current system won't work because we're resetting the points as soon as a player gets 4 points.
+            // Kamran
             if (_player1.Score._Score == 4)
                 return "Player 1 wins";
 

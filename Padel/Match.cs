@@ -5,7 +5,9 @@ namespace Padel
 {
     public class Match
     {
-        List<Set> _sets;
+        // changed to public to be able to test it.
+        // Kamran
+        public List<Set> _sets;
         public Player _player1;
         public Player _player2;
         public Match(int numberOfSets, Player player1, Player player2)
@@ -21,9 +23,9 @@ namespace Padel
 
         // changed logic to add points from a match instance
         // Kamran
-        public void Point(Game game, Player player)
+        public void Point(Player player)
         {
-            game.Point(player);
+            Point(player);
         }
 
         //might be wrong logic

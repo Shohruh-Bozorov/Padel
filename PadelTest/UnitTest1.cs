@@ -30,6 +30,9 @@ namespace PadelTest
         /// <summary>
         /// Testing Score file
         /// </summary>
+        ///
+
+        // Testing score
         [Fact]
         public void Test_ScoreAddition()
         {
@@ -122,10 +125,10 @@ namespace PadelTest
             Assert.False(score1 == score2);
         }
 
-        // test if exeption is thrown in Score method when player does not exist in game
+        // test if exception is thrown in Score method when player does not exist in game
         // Vidar
         [Fact]
-        public void Test_ScoreExetion()
+        public void Test_ScoreException()
         {
             var player1 = new Player("John");
             var player2 = new Player("Betty");
@@ -138,7 +141,12 @@ namespace PadelTest
 
 
         //testing to see if match point logic works.
-        //logic failed, swapped game point to 4 from 3, works now.
+        //logic failed, swapped game point to 4 from 3.
+        //Fails, but for the wrong reason.
+        // Only fails because our score resets as soon as it hits 4.
+        // In reality the logic I wanted to test passes.
+        // If a player wins with 2 points when the score is 40-40, that player gets a game point.
+        // I guess in this case the expected should be 0.
         // Kamran
         [Fact]
         public void Test_GamePointLogic()
@@ -154,13 +162,33 @@ namespace PadelTest
             game.Point(player1);
             game.Point(player1);
 
-            int expected = 5;
+            int expected = 4;
 
             Assert.Equal(expected, player1.Score._Score);
         }
 
+        [Fact]
+        // testing to see if the score is resets.
+        //Kamran
+        public void Test_ScoreResetsCorrectly()
+        {
+            var player = new Player("Jim");
+            var player2 = new Player("Bob");
+            var game = new Game(player, player2);
 
-        //Testing the display score
+            for (int i = 0; i < 4; i++)
+            {
+                game.Point(player);
+            }
+
+            int expected = 0;
+            Assert.Equal(expected, game.Score(player));
+        }
+
+
+        // Testing the display score method
+        // Doesn't work becaue score is reset as soon as the score is 4.
+        // Score String only returns who won if a players score remains 4.
         // Kamran
         [Fact]
         public void Test_DisplayScoreWorks()
@@ -170,7 +198,7 @@ namespace PadelTest
             var game = new Game(player1, player2);
 
             //testing for player one
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 4; i++)
             {
                 game.Point(player1);
             }
@@ -178,7 +206,7 @@ namespace PadelTest
             string expected = "Player 1 wins";
 
             //testing for player2
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 4; i++)
             {
                 game.Point(player2);
             }
@@ -196,6 +224,20 @@ namespace PadelTest
             Assert.NotEqual(expectedForPlayer2, f);
         }
 
+        // testing to see if score string returns undecided if game isn't won yet.
+        // Kamran
+        [Fact]
+        public void Test_ReturnsUndecided()
+        {
+            var player = new Player("Jim");
+            var player2 = new Player("Bob");
+            var game = new Game(player, player2);
+
+            game.Point(player);
+            string expected = "Undecided";
+
+            Assert.Equal(expected, game.ScoreString());
+        }
 
 
         //Testing game constructor
@@ -240,36 +282,6 @@ namespace PadelTest
             Assert.True(player1.Score._Score == 4 && player2.Score._Score == 3);
         }
 
-        [Fact]
-        public void Test_Ett()
-        {
-            Player player1 = new Player("Jimmy");
-            Player player2 = new Player("Frank");
-
-            Match match1 = new Match(2, player1, player2);
-
-        }
-
-
-
-        /*[Fact]
-        public void Test_New()
-        {
-
-            Player player1 = new Player("Karre");
-            Player player2 = new Player("Jimmy");
-            Game game1 = new Game(player1, player2);
-            Game game2 = new Game(player1, player2);
-            Game game3 = new Game(player1, player2);
-            Game game4 = new Game(player1, player2);
-
-
-            Set set = new Set();
-
-            set.Point(game1);
-            set.Point(game2);
-            set.Point(game2);
-        }*/
 
         //Testing players score reset after wining game
         // Vidar
@@ -294,11 +306,11 @@ namespace PadelTest
         public void Test_Game_Point_Incresse()
         {
             var player = new Player("Alan");
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 4; i++)
             {
                 player.Point();
             }
-            //Assert.True(player.gamePoints == 1);
+            Assert.True(player.GamesWon == 1);
         }
 
 
@@ -410,6 +422,61 @@ namespace PadelTest
             Assert.NotNull(set.SetScore());
 
             // System.NullReferenceException was thrown
+        }
+
+
+        // Testing MATCH class
+
+        // Testing to see if the constructor creates the right amount of sets.
+        // Kamran
+        [Fact]
+        public void Test_MatchConstructor()
+        {
+            var player = new Player("Jim");
+            var player2 = new Player("Bob");
+            var match = new Match(3,player, player2);
+
+            int counter = 0;
+            int expected = 3;
+
+            foreach (var item in match._sets)
+            {
+                counter++;
+            }
+
+            Assert.Equal(expected, counter);
+        }
+
+        [Fact]
+        // Testing to see if you can add points to a player through a match instance.
+        // Kamran
+        public void Test_MatchAddsPoint()
+        {
+            var player = new Player("Jim");
+            var player2 = new Player("Bob");
+            var match = new Match(3, player, player2);
+
+            match.Point(player);
+
+            Assert.Equal(1, player.Score._Score);
+
+        }
+
+        [Fact]
+        // checking to see what happens when I add points to a player outside of a match
+        // Kamran
+        public void Test_AddPointsToOutsidePlayer()
+        {
+            var player = new Player("Jim");
+            var player2 = new Player("Bob");
+            var player3 = new Player("Bob");
+            var match = new Match(3, player, player2);
+
+            match.Point(player3);
+
+            int expected = 0;
+
+            Assert.Equal(expected, player3.Score._Score);
         }
     }
 }

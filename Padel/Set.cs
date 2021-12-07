@@ -6,6 +6,8 @@ namespace Padel
     public class Set
     {
         List<Game> _games = new List<Game>();
+
+        //not needed
         public Player _player1;
         public Player _player2;
 
