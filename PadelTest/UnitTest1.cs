@@ -92,7 +92,7 @@ namespace PadelTest
             Assert.Equal(1, game.Player1.Score._Score);
         }
 
-      
+
         // test get players score when score is same
         // Vidar       
         [Fact]
@@ -104,7 +104,7 @@ namespace PadelTest
             var score1 = (game.Score(player1));
             var score2 = (game.Score(player2));
 
-            Assert.True (score1._Score == score2._Score);
+            Assert.True(score1._Score == score2._Score);
         }
 
         // test get players score when score is false
@@ -125,7 +125,7 @@ namespace PadelTest
         // test if exeption is thrown in Score method when player does not exist in game
         // Vidar
         [Fact]
-         public void Test_ScoreExetion()
+        public void Test_ScoreExetion()
         {
             var player1 = new Player("John");
             var player2 = new Player("Betty");
@@ -196,7 +196,7 @@ namespace PadelTest
             Assert.NotEqual(expectedForPlayer2, f);
         }
 
-        
+
 
         //Testing game constructor
         // Vidar
@@ -312,7 +312,7 @@ namespace PadelTest
         public void Test_CreatingNewSet()
         {
             var newSet = new Set();
-            
+
             Assert.Null(newSet);
             // Contains two players
         }
@@ -332,8 +332,8 @@ namespace PadelTest
         // Test point method if you can add score
         //Vidar
 
-         [Fact]
-         public void Test_PointMethod_SetClass()
+        [Fact]
+        public void Test_PointMethod_SetClass()
         {
             var player1 = new Player("p1");
             var player2 = new Player("p2");
@@ -360,7 +360,7 @@ namespace PadelTest
             {
                 set.Point(game, player1, 0);
             }
-          
+
             Assert.Equal(1, player1.GamesWon);
 
             // Noticed here that the index was not needed
@@ -389,6 +389,26 @@ namespace PadelTest
             Assert.Equal(2, player1.GamesWon);
 
             // Failed
+        }
+
+        //Test if SetScore method works
+        // Vidar
+
+        [Fact]
+        public void Test_SetScoreMethod()
+        {
+            var player1 = new Player("p1");
+            var player2 = new Player("p2");
+            var game = new Game(player1, player2);
+            var set = new Set();
+
+            for (int i = 0; i < 4; i++)
+            {
+                set.Point(game, player1, 0);
+            }
+            Assert.NotNull(set.SetScore());
+
+            // System.NullReferenceException was thrown
         }
     }
 }

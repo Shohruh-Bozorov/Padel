@@ -26,6 +26,10 @@ namespace Padel
 
         public string SetScore()
         {
+            // System.NullReferenceException was thrown
+            // The players in this method is never used
+
+
             return $"The score is \n" +
                 $"Player one: {_player1.GamesWon} - {_player2.GamesWon}";
         }
