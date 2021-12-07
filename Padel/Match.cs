@@ -19,12 +19,15 @@ namespace Padel
             _player2 = player2;
         }
 
-        public void Point(Set set, int index)
+        // changed logic to add points from a match instance
+        // Kamran
+        public void Point(Game game, Player player)
         {
-            _sets[index] = set; 
+            game.Point(player);
         }
 
         //might be wrong logic
+        // added some logic
         public string MatchScore()
         {
             if (_player1.SetsWon == 3)

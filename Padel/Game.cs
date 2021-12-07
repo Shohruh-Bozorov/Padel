@@ -31,32 +31,23 @@ namespace Padel
 
             }
 
-            if (player.Name == _player1.Name)
-                _player1.Point();
-            else if (player.Name == _player2.Name)
-                _player2.Point();
-            else
-                throw new FormatException("Invalid player name");
+            player.Point();
 
         }
 
 
         // doesn't return player2
         // added parameter to determine player
-        //
-        public Score Score(Player player)
+        // Kamran
+        public int Score(Player player)
         {
-            if (_player1.Name == player.Name)
-                return _player1.Score;
-            else if (_player2.Name == player.Name)
-                return _player2.Score;
-
-            else throw new FormatException("Incorrect player");
+            return player.Score._Score;
         }
 
 
         // logic wrong
         // added else if so that the method doesn't always return player 2 wins.
+        // Kamran
         public string ScoreString()
         {
             if (_player1.Score._Score == 4)

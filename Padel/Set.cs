@@ -12,11 +12,11 @@ namespace Padel
 
         // changed to take in game instead of player
         // first to 6 games. if it is 5-5 then play to 7. if 6-6 play one last game
-        public void Point(Game game, Player player, int index)
+        public void Point(Game game, Player player)
         {
             //loop how many times it should add a point.
             _games.Add(game);
-            _games[index].Point(player);
+            game.Point(player);
         }
 
         public string SetScore()
