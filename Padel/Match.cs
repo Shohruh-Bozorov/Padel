@@ -32,9 +32,9 @@ namespace Padel
         // added some logic
         public string MatchScore()
         {
-            if (_player1.SetsWon == 3)
+            if (_player1.SetsWon >= 3)
                 return "Player one has won the match";
-            else if (_player2.SetsWon == 3)
+            else if (_player2.SetsWon >= 3)
                 return "Player two has won the match";
 
             return $"The score is \n" +

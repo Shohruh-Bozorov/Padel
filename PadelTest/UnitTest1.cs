@@ -434,7 +434,7 @@ namespace PadelTest
         {
             var player = new Player("Jim");
             var player2 = new Player("Bob");
-            var match = new Match(3,player, player2);
+            var match = new Match(3, player, player2);
 
             int counter = 0;
             int expected = 3;
@@ -477,6 +477,21 @@ namespace PadelTest
             int expected = 0;
 
             Assert.Equal(expected, player3.Score._Score);
+        }
+
+        [Fact]
+        // testing to see if MatchPoint works
+        // Kamran
+        public void Test_MatchPoint()
+        {
+            var player = new Player("Jim");
+            var player2 = new Player("Bob");
+            var player3 = new Player("Bob");
+            var match = new Match(3, player, player2);
+            player.SetsWon = 3;
+            string expected = "Player one has won the match";
+
+            Assert.Equal(expected, match.MatchScore());
         }
     }
 }
